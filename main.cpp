@@ -9,22 +9,21 @@ int main(int argc, char *argv[]) {
   string input_file = "";
   string output_file = "output.dat";
 
-  // no input file name -- should exit program
-  if (argc == 1) {
-    cout << "No input file to read from. ABORT\n";
-    exit(1);
-  } else if (argc == 2) {
-    cout << "input file name given" << endl;
-    // input file name given but no output file name
-    input_file = argv[1];
-    cout << "assigned" << endl;
-  } else {
-    cout << "both input and output file name given" << endl;
-    // files names given for input and output file
-    input_file = argv[1];
-    cout << "assigned" << endl;
-    output_file = argv[2];
-    cout << "assigned" << endl;
+  switch (argc) {
+    case 0: case 1:
+      // no input file name -- should exit program
+      cout << "No input file to read from. ABORT\n";
+      exit(1);
+      break;
+    case 2:
+      // input file name given but no output file name
+      input_file = argv[1];
+      break;
+    default:
+      // files names given for input and output file
+      input_file = argv[1];
+      output_file = argv[2];
+      break;
   }
 
   ifstream fin(input_file);
@@ -36,11 +35,8 @@ int main(int argc, char *argv[]) {
 
   long i = 0;
   cout << "Getting data...\n";
-  while (fin >> data_array[i]) {
-    cout << data_array[i] << " ";
-    i++;
-  }
-  length = i + 1;
+  while (fin >> data_array[i]) i++;
+  length = i;
 
   bubble_sort(data_array, length);
 

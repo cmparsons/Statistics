@@ -6,7 +6,7 @@ using namespace std;
 template <class T>
 void bubble_sort(T array[], const long length) {
   for (int i = 0; i < length - 1; i++) {
-    for (int j = 0; j < length - 1 - j; j++) {
+    for (int j = 0; j < length - 1 - i; j++) {
       if (array[j] > array[j + 1]) {
         swap(array[j], array[j + 1]);
       }
@@ -31,7 +31,7 @@ T get_median(const T array[], const long length) {
     T val1 = array[length / 2];
     T val2 = array[length / 2 + 1];
 
-    median = (val1 + val2) / 2;
+    median = (val1 + val2) / 2.0;
   } else {
     median = array[(length + 1) / 2];
   }
@@ -50,6 +50,13 @@ float calculate_mean(const T array[], const long length) {
   mean = static_cast<float>(sum) / length;
 
   return mean;
+}
+
+template<class T>
+T calculate_quartile(const float quartile, T array[], const long length) {
+  long observation = (quartile / 100) * (length + 1);
+
+  return array[observation];
 }
 
 #endif

@@ -40,9 +40,13 @@ int main(int argc, char *argv[]) {
 
   bubble_sort(data_array, length);
 
+  cout << "Writing to output file...\n";
   fout << "Ouput:\n";
   fout << "Mean: " << calculate_mean(data_array, length) << endl;
   fout << "Median: " << get_median(data_array, length) << endl;
+  fout << "First Quartile: " << calculate_quartile(25, data_array, length) << endl;
+  fout << "Second Quartile: " << calculate_quartile(50, data_array, length) << endl; // median should yield same answer
+  fout << "Third Quartile: " << calculate_quartile(75, data_array, length) << endl;
 
   return 0;
 }

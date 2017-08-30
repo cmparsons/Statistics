@@ -24,15 +24,32 @@ void swap(T &a, T &b) {
 }
 
 template <class T>
-T get_median(T array[], const long length) {
+T get_median(const T array[], const long length) {
+  T median;
+
   if (length % 2 == 0) {
     T val1 = array[length / 2];
     T val2 = array[length / 2 + 1];
 
-    return (val1 + val2) / 2;
+    median = (val1 + val2) / 2;
   } else {
-    return array[(length + 1) / 2];
+    median = array[(length + 1) / 2];
   }
+
+  return median;
+}
+
+template <class T>
+float calculate_mean(const T array[], const long length) {
+  T sum = 0;
+  float mean = 0;
+
+  for (int i = 0; i < length; i++) {
+    sum += array[i];
+  }
+  mean = static_cast<float>(sum) / length;
+
+  return mean;
 }
 
 #endif
